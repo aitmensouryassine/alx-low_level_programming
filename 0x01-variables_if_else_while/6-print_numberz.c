@@ -12,8 +12,7 @@ int main(void)
 
 	while (i < length)
 	{
-		zero_ascii += i;
-		printf(zero_ascii);
+		putchar(zero_ascii + i);
 		i++;
 	}
 	putchar('\n');
