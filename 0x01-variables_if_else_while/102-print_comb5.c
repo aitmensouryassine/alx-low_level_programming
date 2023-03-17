@@ -1,4 +1,5 @@
-#include <stdio.h>
+
+0;10;1c#include <stdio.h>
 /**
  * main - Entry point
  *
@@ -19,7 +20,7 @@ int main(void)
 			{
 				for (l = 0; l <= 9; l++)
 				{
-					if (i == k && j == l || l <= j)
+					if ((i == k && j == l) || l <= j)
 						continue;
 
 					putchar('0' + i);
