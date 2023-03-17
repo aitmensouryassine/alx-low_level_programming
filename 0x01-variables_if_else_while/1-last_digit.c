@@ -14,7 +14,7 @@ int main(void)
 	n = rand() - RAND_MAX / 2;
 
 	/* int sign = n < 0 ? -1 : 1; */
-	int last_digit = n % 10 * sign;
+	int last_digit = n % 10;
 
 	if (last_digit == 0)
 	{
