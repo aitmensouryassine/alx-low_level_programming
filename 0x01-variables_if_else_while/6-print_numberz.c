@@ -7,7 +7,7 @@
 int main(void)
 {
 	int length = 10;
-	int zero_ascci = 48;
+	int zero_ascii = 48;
 	int i = 0;
 
 	while (i < length)
