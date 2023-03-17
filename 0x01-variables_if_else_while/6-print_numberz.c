@@ -1,0 +1,21 @@
+#include <stdio.h>
+/**
+ * main - Entry point
+ *
+ * Return: Always 0
+*/
+int main(void)
+{
+	int length = 10;
+	int zero_ascci = 48;
+	int i = 0;
+
+	while (i < length)
+	{
+		printf(zero_ascii + i);
+		i++;
+	}
+	putchar('\n');
+
+	return (0);
+}
