@@ -15,6 +15,7 @@ int main(void)
 		putchar(first_letter + i);
 		i++;
 	}
+	putchar('\n');
 
 	return (0);
 }
