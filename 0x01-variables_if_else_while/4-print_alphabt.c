@@ -14,7 +14,7 @@ int main(void)
 	{
 		if (first_letter + i == 'q' || first_letter + i == 'e')
 		{
-			continue;
+			i++;
 		}
 		putchar(first_letter + i);
 		i++;
