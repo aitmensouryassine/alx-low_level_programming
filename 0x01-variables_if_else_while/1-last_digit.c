@@ -9,12 +9,14 @@
 int main(void)
 {
 	int n;
+	int sign;
+	int last_digit;
 
 	srand(time(0));
 	n = rand() - RAND_MAX / 2;
 
-	/* int sign = n < 0 ? -1 : 1; */
-	int last_digit = n % 10;
+	sign = n < 0 ? -1 : 1;
+	last_digit = n % 10 * sign;
 
 	if (last_digit == 0)
 	{
