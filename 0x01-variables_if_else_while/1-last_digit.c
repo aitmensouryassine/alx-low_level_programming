@@ -10,21 +10,22 @@ int main(void)
 {
 	int n;
 	int last_digit;
+	int str[] = "Last digit of";
 
 	srand(time(0));
 	n = rand() - RAND_MAX / 2;
 
-	last_digit = n % 10;
+	l = n % 10;
 
-	if (last_digit == 0)
+	if (l == 0)
 	{
-		printf("Last digit of %d is %d and is zero\n", n, last_digit);
-	} else if (last_digit > 5)
+		printf("%s %d is %d and is 0\n", str, n, l);
+	} else if (l > 5)
 	{
-		printf("Last digit of %d is %d and is greater than 5\n", n, last_digit);
+		printf("%s %d is %d and is greater than 5\n", str, n, l);
 	} else
 	{
-		printf("Last digit of %d is %d and is less than 6 and not 0\n", n, last_digit);
+		printf("%s %d is %d and is less than 6 and not 0\n", str, n, l);
 	}
 
 	return (0);
