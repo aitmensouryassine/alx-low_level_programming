@@ -1,5 +1,25 @@
 #include "main.h"
 /**
+ * print_ints_less_than_100 - prints ints that are less than 100 with
+ * putchar
+ *
+ * @n: integer to print
+ *
+ * Return: nothing
+ */
+void print_ints_less_than_100(int n)
+{
+	if (n < 10)
+	{
+		_putchar(n + '0');
+	} else
+	{
+		_putchar(n / 10 + '0');
+		_putchar(n % 10 + '0');
+
+	}
+}
+/**
  * times_table - prints the 9 times table, starting with 0.
  *
  * Return: nothing
