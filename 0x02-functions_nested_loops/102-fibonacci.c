@@ -16,14 +16,10 @@ void fibonacci(int n)
 		printf("%lu", fib);
 		printf(", ");
 
-		if (fib == 2)
-		{
-			printf("\n");
-		}
-
 		first_fib = sec_fib;
 		sec_fib = fib;
 		fib = first_fib + sec_fib;
+		i++;
 	}
 }
 /**
