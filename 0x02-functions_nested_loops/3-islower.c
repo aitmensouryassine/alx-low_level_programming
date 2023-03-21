@@ -7,7 +7,7 @@
  */
 int _islower(int c)
 {
-	int result = islower(c);
+	int result = islower(c) == 2 ? 1 : 0;
 
 	return (result);
 }
