@@ -7,9 +7,9 @@
 void fibonacci(int n)
 {
 	int i = 0;
-	unsigned long long int fib = 1;
-	unsigned long long int first_fib = 0;
-	unsigned long long int sec_fib =  1;
+	unsigned long int fib = 1;
+	unsigned long int first_fib = 0;
+	unsigned long int sec_fib =  1;
 
 	while (i < n)
 	{
