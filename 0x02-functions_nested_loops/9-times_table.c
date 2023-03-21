@@ -1,7 +1,7 @@
 #include "main.h"
 /**
  * print_ints_less_than_100 - prints ints that are less than 100 with
- * putchar, prints in format XX e.g. ' 5', ' 8', '18'
+ * putchar
  *
  * @n: integer to print
  *
@@ -11,7 +11,6 @@ void print_ints_less_than_100(int n)
 {
 	if (n < 10)
 	{
-		_putchar(' ');
 		_putchar(n + '0');
 	} else
 	{
@@ -37,6 +36,10 @@ void times_table(void)
 		i = 0;
 		while (i <= times)
 		{
+			if (times > 0)
+			{
+				_putchar(' ');
+			}
 			print_ints_less_than_100(n * i);
 
 			if (i == times)
