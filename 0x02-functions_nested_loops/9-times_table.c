@@ -29,14 +29,16 @@ void times_table(void)
 	int num = 9;
 	int times = 9;
 	int n = 0;
-	int i;
+	int i, res;
 
 	while (n <= num)
 	{
 		i = 0;
 		while (i <= times)
 		{
-			if (times > 0)
+			res = n * i;
+
+			if (times > 0 && res < 10)
 			{
 				_putchar(' ');
 			}
