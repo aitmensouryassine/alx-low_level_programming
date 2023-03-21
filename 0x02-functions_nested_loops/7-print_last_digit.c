@@ -8,6 +8,8 @@ int print_last_digit(int n)
 {
 	int sign = (n == 0) ? 0 : (n > 0) ? 1 : -1;
 	int last = n % 10;
+	char res = last * sign;
 
-	return (last * sign + 48);
+	_putchar(res + '0');
+	return (res);
 }
