@@ -38,7 +38,7 @@ void times_table(void)
 		{
 			res = n * i;
 
-			if (times > 0 && res < 10)
+			if (res < 10 && i != 0)
 			{
 				_putchar(' ');
 			}
