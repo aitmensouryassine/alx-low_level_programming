@@ -40,7 +40,7 @@ void print_times_table(int n)
 			{
 				_putchar(' ');
 				_putchar(' ');
-			} else
+			} else if (res >= 100)
 			{
 				_putchar(' ');
 			}
