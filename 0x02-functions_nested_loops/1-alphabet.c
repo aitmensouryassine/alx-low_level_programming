@@ -1,3 +1,5 @@
+#include <unistd.h>
+
 /**
  * print_alphabet - print alphabet followed by a new line
  * Return - nothing
