@@ -13,7 +13,7 @@ void fibonacci(int n)
 
 	while (i < n)
 	{
-		printf("%llu", fib);
+		printf("%lu", fib);
 		printf(", ");
 
 		if (fib == 2)
