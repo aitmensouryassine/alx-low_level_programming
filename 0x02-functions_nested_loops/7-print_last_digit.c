@@ -9,5 +9,5 @@ int print_last_digit(int n)
 	int sign = (n == 0) ? 0 : (n > 0) ? 1 : -1;
 	int last = n % 10;
 
-	return (last * sign * 11);
+	return (last * sign + 48);
 }
