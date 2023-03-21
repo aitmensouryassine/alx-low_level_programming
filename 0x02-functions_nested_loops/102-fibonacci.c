@@ -22,6 +22,7 @@ void fibonacci(int n)
 		fib = first_fib + sec_fib;
 		i++;
 	}
+	putchar('\n');
 }
 /**
  * main - netry point
