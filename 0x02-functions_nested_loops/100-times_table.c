@@ -24,38 +24,38 @@ void print_times_table(int n)
 {
 	int i = 0, j, res;
 
-	if (n > 15 || n < 0)
-		return (0);
-
-	while (i <= n)
+	if (n <= 15 && n >= 0)
 	{
-		j = 0;
-		while (j <= n)
+		while (i <= n)
 		{
-			res = i * j;
+			j = 0;
+			while (j <= n)
+			{
+				res = i * j;
 
-			if (res < 10 && j != 0)
-			{
-				_putchar(',');
-				_putchar(' ');
-				_putchar(' ');
-				_putchar(' ');
-			} else if (res >= 10 && res < 100)
-			{
-				_putchar(',');
-				_putchar(' ');
-				_putchar(' ');
-			} else if (res >= 100)
-			{
-				_putchar(',');
-				_putchar(' ');
+				if (res < 10 && j != 0)
+				{
+					_putchar(',');
+					_putchar(' ');
+					_putchar(' ');
+					_putchar(' ');
+				} else if (res >= 10 && res < 100)
+				{
+					_putchar(',');
+					_putchar(' ');
+					_putchar(' ');
+				} else if (res >= 100)
+				{
+					_putchar(',');
+					_putchar(' ');
+				}
+
+				print_long_int(res);
+
+				j++;
 			}
-
-			print_long_int(res);
-
-			j++;
+			_putchar('\n');
+			i++;
 		}
-		_putchar('\n');
-		i++;
 	}
 }
