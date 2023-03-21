@@ -5,12 +5,13 @@
  */
 int main(void)
 {
-	char c = 'a';
-
-	while (c <= 'z')
+	char word[] = "_putchar";
+	int i;
+	
+	for (i = 0; i <= 7; i++)
 	{
-		_putchar(c);
-		c++;
+		_putchar(word[i]);
+		i++;
 	}
 	_putchar('\n');
 	return (0);
