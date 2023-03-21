@@ -6,13 +6,14 @@
  */
 void fibonacci(int n)
 {
-	int fib = 1;
-	int first_fib = 0;
-	int sec_fib =  1;
+	int i = 0;
+	unsigned long long int fib = 1;
+	unsigned long long int first_fib = 0;
+	unsigned long long int sec_fib =  1;
 
-	while (fib <= n)
+	while (i < n)
 	{
-		printf("%d", fib);
+		printf("%llu", fib);
 		printf(", ");
 
 		if (fib == 2)
