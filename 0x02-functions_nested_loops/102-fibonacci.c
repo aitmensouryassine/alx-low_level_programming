@@ -14,7 +14,8 @@ void fibonacci(int n)
 	while (i < n)
 	{
 		printf("%lu", fib);
-		printf(", ");
+		if (i < n - 1)
+			printf(", ");
 
 		first_fib = sec_fib;
 		sec_fib = fib;
