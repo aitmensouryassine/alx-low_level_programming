@@ -1,5 +1,19 @@
 #include <stdio.h>
 /**
+ * print_long_int - print int > 9 with putchar
+ *
+ * @n: the number to print
+ *
+ * Return: nothing
+ */
+void print_long_int(int n)
+{
+	if (n / 10)
+		print_long_int(n / 10);
+
+	putchar(n % 10 + '0');
+}
+/**
  * fibonacci - prints first n Fibonacci numbers
  * @n: fibonacci numbers
  * Return: nothing
@@ -13,7 +27,7 @@ void fibonacci(int n)
 
 	while (i < n)
 	{
-		printf("%lu", fib);
+		_print_long_int(fib);
 		if (i < n - 1)
 			printf(", ");
 
