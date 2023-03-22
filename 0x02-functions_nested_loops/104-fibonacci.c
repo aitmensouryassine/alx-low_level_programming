@@ -45,7 +45,7 @@ void fibonacci(int n)
  */
 int main(void)
 {
-	fibonacci(100);
+	fibonacci(98);
 
 	return (0);
 }
