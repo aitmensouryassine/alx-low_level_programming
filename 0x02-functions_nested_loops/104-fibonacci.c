@@ -1,42 +1,46 @@
 #include <stdio.h>
 /**
- * print_long_int - print int > 9 with putchar
- *
- * @n: the number to print
- *
- * Return: nothing
- */
-void print_long_int(unsigned long n)
-{
-	if (n / 10)
-		print_long_int(n / 10);
-
-	putchar(n % 10 + '0');
-}
-/**
  * fibonacci - prints first n Fibonacci numbers
  * @n: fibonacci numbers
  * Return: nothing
  */
 void fibonacci(int n)
 {
-	int i = 0;
-	unsigned long int fib = 1;
-	unsigned long int first_fib = 0;
-	unsigned long int sec_fib =  1;
+	int i = 1;
+	unsigned long int first_fib_0, sec_fib_0, first_fib_1;
+	unsigned long int first_fib_2, sec_fib_1, sec_fib_2;
 
-	while (i < n)
+	first_fib_0 = 1;
+	sec_fib_0 = 2;
+
+	printf("%lu", first_fib_0);
+
+	while (i < 91)
 	{
-		print_long_int(fib);
-		if (i < n - 1)
-			printf(", ");
+		printf(", %lu", sec_fib_0);
+		sec_fib_0 = sec_fib_0 + first_fib_0;
+		first_fib_0 = sec_fib_0 - first_fib_0;
 
-		first_fib = sec_fib;
-		sec_fib = fib;
-		fib = first_fib + sec_fib;
 		i++;
 	}
-	putchar('\n');
+
+	first_fib_1 = first_fib_0 / 1000000000;
+	first_fib_2 = first_fib_0 % 1000000000;
+	sec_fib_1 = sec_fib_0 / 1000000000;
+	sec_fib_2 = sec_fib_0 % 1000000000;
+
+	i = 92;
+	while (i <= n)
+	{
+		printf(", %lu", sec_fib_1 + (sec_fib_2 / 1000000000));
+		printf("%lu", sec_fib_2 % 1000000000);
+		sec_fib_1 = sec_fib_1 + first_fib_1;
+		first_fib_1 = sec_fib_1 - first_fib_1;
+		sec_fib_2 = sec_fib_2 + first_fib_2;
+		first_fib_2 = sec_fib_2 - first_fib_2;
+		i++;
+	}
+	printf("\n");
 }
 /**
  * main - netry point
