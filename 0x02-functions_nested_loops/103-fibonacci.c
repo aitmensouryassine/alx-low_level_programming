@@ -22,7 +22,7 @@ void sum_even_fibonacci(unsigned long int max)
 		sec_fib = fib;
 		fib = first_fib + sec_fib;
 	}
-	putchar('\n');
+	printf("%lu\n", sum);
 }
 /**
  * main - netry point
