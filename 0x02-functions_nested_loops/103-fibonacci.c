@@ -4,7 +4,7 @@
  * @max: max fibonacci number
  * Return: nothing
  */
-void sum_even_fibonacci(int max)
+void sum_even_fibonacci(unsigned long int max)
 {
 	unsigned long int fib = 1;
 	unsigned long int first_fib = 0;
