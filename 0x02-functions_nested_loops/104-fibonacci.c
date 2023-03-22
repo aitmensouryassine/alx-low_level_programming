@@ -6,7 +6,7 @@
  *
  * Return: nothing
  */
-void print_long_int(int n)
+void print_long_int(unsigned long n)
 {
 	if (n / 10)
 		print_long_int(n / 10);
