@@ -27,7 +27,7 @@ void fibonacci(int n)
 
 	while (i < n)
 	{
-		_print_long_int(fib);
+		print_long_int(fib);
 		if (i < n - 1)
 			printf(", ");
 
