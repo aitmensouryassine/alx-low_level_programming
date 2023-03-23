@@ -10,7 +10,7 @@ void print_positive_number(int n)
 	{
 		print_positive_number(n / 10);
 	}
-	putchar(n % 10 + '0');
+	_putchar(n % 10 + '0');
 }
 
 /**
@@ -25,6 +25,6 @@ void print_number(int n)
 	x = n * sign;
 
 	if (sign == -1)
-		putchar('-');
+		_putchar('-');
 	print_positive_number(x);
 }
