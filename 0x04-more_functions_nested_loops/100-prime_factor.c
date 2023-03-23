@@ -24,7 +24,7 @@ int main(void)
 		}
 		i++;
 	}
-	printf("%lu", max);
+	printf("%lu\n", max);
 
 	return (0);
 }
