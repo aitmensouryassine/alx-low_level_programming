@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * print_square - draws a square line in the terminal using '#'
+ * print_square - draws a square in the terminal using '#'
  * followed by a new line
  * @size: size of the square
  */
