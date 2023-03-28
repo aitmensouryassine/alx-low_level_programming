@@ -9,7 +9,8 @@
 
 int _atoi(char *s)
 {
-	int i, j, len, sign, result;
+	int i, j, len, sign;
+	unsigned int result;
 
 	result = 0;
 	sign = 1;
@@ -19,6 +20,8 @@ int _atoi(char *s)
 	{
 		if (s[i] == '-')
 			sign *= -1;
+		if (s[j] >= '0' && s[j] <= '9')
+			break;
 	}
 
 	for (j = 0; j < len; j++)
