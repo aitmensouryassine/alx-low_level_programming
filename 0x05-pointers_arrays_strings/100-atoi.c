@@ -9,38 +9,28 @@
 
 int _atoi(char *s)
 {
-	int i, j, k, len, sign, numbers, result;
+	int i, j, len, sign, result;
 
-	k = 1;
 	result = 0;
-	numbers = 9;
-	sign = 0;
+	sign = 1;
 	len = strlen(s);
 
-	for (i = len; i >= 0; i--)
+	for (i = 0; i < len; i++)
 	{
-		if	(s[i] == '+')
-		{
-			sign++;
-		} else if (s[i] == '-')
-		{
-			sign--;
-		}
+		if (s[i] == '-')
+			sign *= -1;
+	}
 
-		for (j = 0; j <= numbers; j++)
+	for (j = 0; j < len; j++)
+	{
+		if (s[j] >= '0' && s[j] <= '9')
 		{
-			if (s[i] - '0' == j)
-			{
-				result += k * j;
-				k *= 10;
-			}
+			result = (result * 10) + (s[j] - '0');
+
+			if (s[j + 1] < '0' || s[j + 1] > '9')
+				break;
 		}
 	}
 
-	if (sign != 0)
-	{
-		result *= sign;
-	}
-
-	return (result);
+	return (result * sign);
 }
