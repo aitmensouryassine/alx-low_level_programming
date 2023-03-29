@@ -55,7 +55,9 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 		if (i <= 0 && j <= 0)
 		{
 			r[k++] = tmp % 10 + '0';
-			r[k] = tmp / 10 + '0';
+			if (tmp / 10)
+				r[k] = tmp / 10 + '0';
+
 		} else
 				r[k] = tmp % 10 + '0';
 		tmp = tmp / 10;
