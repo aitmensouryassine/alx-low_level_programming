@@ -2,6 +2,26 @@
 #include <string.h>
 
 /**
+ * rev_string - reverse array
+ * @c: string to reverse
+ * Return: nothing
+ */
+
+void rev_string(char *c)
+{
+	int k, tmp, l;
+
+	l = strlen(c);
+	k = 0;
+	for (k = 0; k < l; k++, l--)
+	{
+		tmp = c[k];
+		c[k] = c[l - 1];
+		c[l - 1] = tmp;
+	}
+}
+
+/**
  * infinite_add - adds two numbers
  * @n1: first number (a string)
  * @n2: second number (a string)
@@ -43,17 +63,9 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 	r[k] = '\0';
 
 	rlen = strlen(r);
-
-	for (k = 0; k < rlen; k++, rlen--)
-	{
-		tmp = r[k];
-		r[k] = r[rlen - 1];
-		r[rlen - 1] = tmp;
-	}
-
-	rlen = strlen(r);
 	if (rlen + 1 > size_r)
 		return (0);
 
+	rev_string(r);
 	return (r);
 }
