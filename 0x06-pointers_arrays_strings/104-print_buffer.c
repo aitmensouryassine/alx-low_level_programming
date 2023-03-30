@@ -48,7 +48,7 @@ void print_printable_char(char *b, int byte, int size)
 		if ((i + byte) >= size)
 			break;
 
-		else if (b[i + byte] >= 32 && b[i + byte] <= 126)
+		else if (b[i + byte] >= 31 && b[i + byte] <= 126)
 			_putchar(b[i + byte]);
 		else
 			_putchar('.');
