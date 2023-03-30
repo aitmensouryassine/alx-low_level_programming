@@ -3,21 +3,20 @@
 /**
  * print_hex_2 - shows the hexadecimal content (2 chars)
  * of the buffer, 2 bytes at a time, separated by a space
- * @c: the buffer
- * @start: (integer) starting index
- * @end: (integer) ending index
+ * @b: the buffer
+ * @byte: (integer) index
  * @size: size of the buffer
  */
-void print_hex_2(char *c, int start, int end, int size)
+void print_hex_2(char *b, int byte, int size)
 {
 	int i;
 
-	for (i = start; i < end; i++)
+	for (i = 0; i < 10; i++)
 	{
-		if (i >= size)
+		if ((i + byte) >= size)
 			printf("  ");
 		else
-			printf("%02x", c[i]);
+			printf("%02x", b[i + byte]);
 
 		if ((i % 2) != 0 && i != 0)
 			printf(" ");
@@ -36,22 +35,21 @@ void print_hex_8(int pos)
 
 /**
  * print_printable_char - prints only printable chars
- * @c: the buffer
- * @start: starting index
- * @end: ending index
+ * @b: the buffer
+ * @byte: index
  * @size: size of the buffer
  */
-void print_printable_char(char *c, int start, int end, int size)
+void print_printable_char(char *b, int byte, int size)
 {
 	int i;
 
-	for (i = start; i < end; i++)
+	for (i = 0; i < 10; i++)
 	{
-		if (i >= size)
+		if ((i + byte) >= size)
 			break;
 
-		if (c[i] >= 32 && c[i] <= 126)
-			_putchar(c[i]);
+		else if (b[i + byte] >= 32 && b[i + byte] <= 126)
+			_putchar(b[i + byte]);
 		else
 			_putchar('.');
 	}
@@ -65,21 +63,21 @@ void print_printable_char(char *c, int start, int end, int size)
  */
 void print_buffer(char *b, int size)
 {
-	if (size == 0)
+	if (size <= 0)
 	{
 		printf("\n");
 	}
 	else
 	{
-		int i;
+		int byte;
 
-		for (i = 0; i < size; i += 10)
+		for (byte = 0; byte < size; byte += 10)
 		{
-			printf("%08x: ", i);
-			print_hex_2(b, i, i + 10, size);
-			print_printable_char(b, i, i + 10, size);
+			printf("%08x: ", byte);
+			print_hex_2(b, byte, size);
+			print_printable_char(b, byte, size);
 
-			if (i >= size)
+			if (byte >= size)
 				continue;
 
 			_putchar('\n');
