@@ -78,6 +78,10 @@ void print_buffer(char *b, int size)
 			printf("%08x: ", i);
 			print_hex_2(b, i, i + 10, size);
 			print_printable_char(b, i, i + 10, size);
+
+			if (i >= size)
+				continue;
+
 			_putchar('\n');
 		}
 	}
