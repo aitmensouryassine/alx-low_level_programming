@@ -14,6 +14,9 @@ char *cap_string(char *);
 char *leet(char *);
 void print_number(int n);
 char *infinite_add(char *n1, char *n2, char *r, int size_r);
+void print_hex_2(char *b, int byte, int size);
+void print_hex_8(int pos);
+void print_printable_char(char *b, int byte, int size);
 void print_buffer(char *b, int size);
 
 #endif
