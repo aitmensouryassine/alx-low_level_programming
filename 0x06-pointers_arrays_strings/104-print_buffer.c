@@ -6,13 +6,15 @@
  * @c: the buffer
  * @start: (integer) starting index
  * @end: (integer) ending index
-*/
+ */
 void print_hex_2(char *c, int start, int end)
 {
-	for (start; start < end; start += 2)
+	int i;
+
+	for (i = start; i < end; i += 2)
 	{
-		printf("%02x", c[start]);
-		printf("%02x ", c[start + 1]);
+		printf("%02x", c[i]);
+		printf("%02x ", c[i + 1]);
 	}
 }
 
@@ -20,7 +22,7 @@ void print_hex_2(char *c, int start, int end)
  * print_hex_8 - shows the hexadecimal content (8chars)
  * of the position of the first char in the buffer
  * @pos: (integer) the position of the char in the buffer
-*/
+ */
 void print_hex_8(int pos)
 {
 	printf("%08x: ", pos);
@@ -31,13 +33,15 @@ void print_hex_8(int pos)
  * @c: the buffer
  * @start: starting index
  * @end: ending index
-*/
+ */
 void print_printable_char(char *c, int start, int end)
 {
-	for (start; start < end; start++)
+	int i;
+
+	for (i = start; i < end; i++)
 	{
-		if (c[start] >= 32 && c[start] <= 126)
-			_putchar(c[start]);
+		if (c[i] >= 32 && c[i] <= 126)
+			_putchar(c[i]);
 		else
 			_putchar('.');
 	}
@@ -51,7 +55,7 @@ void print_printable_char(char *c, int start, int end)
  */
 void print_buffer(char *b, int size)
 {
-	int i, k = 0;
+	int i;
 
 	for (i = 0; i < size; i += 10)
 	{
