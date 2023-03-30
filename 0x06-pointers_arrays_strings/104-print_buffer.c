@@ -55,13 +55,19 @@ void print_printable_char(char *c, int start, int end)
  */
 void print_buffer(char *b, int size)
 {
-	int i;
-
-	for (i = 0; i < size; i += 10)
+	if (size == 0)
 	{
-		printf("%08x: ", i);
-		print_hex_2(b, i, i + 10);
-		print_printable_char(b, i, i + 10);
-		_putchar('\n');
+		printf("\n");
+	} else
+	{
+		int i;
+
+		for (i = 0; i < size; i += 10)
+		{
+			printf("%08x: ", i);
+			print_hex_2(b, i, i + 10);
+			print_printable_char(b, i, i + 10);
+			_putchar('\n');
+		}
 	}
 }
