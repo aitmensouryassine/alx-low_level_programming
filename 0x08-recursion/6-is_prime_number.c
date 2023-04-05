@@ -17,7 +17,7 @@ int _is_prime_number(int n, int i)
 	if (n % i == 0 && i > 1)
 		return (0);
 
-	_is_prime_number(n, (i - 1));
+	return (_is_prime_number(n, (i - 1)));
 }
 
 /**
