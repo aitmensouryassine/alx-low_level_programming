@@ -14,7 +14,7 @@
 int main(int argc, char **argv)
 {
 	int cents[] = {25, 10, 5, 2, 1};
-	int i, size = sizeof(cents) / sizeof(int);
+	int amount, count, i, size = sizeof(cents) / sizeof(int);
 
 	if (argc != 2)
 	{
@@ -22,7 +22,8 @@ int main(int argc, char **argv)
 		return (1);
 	}
 
-	int amount = atoi(argv[1]), count = 0;
+	amount = atoi(argv[1]);
+	count = 0;
 
 	if (amount < 0)
 	{
