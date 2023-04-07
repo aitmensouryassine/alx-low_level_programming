@@ -40,6 +40,6 @@ int main(int argc, char **argv)
 		return (1);
 	}
 
-	printf("%d\n", strtonum(argv[1]) * strtonum(argv[2]));
+	printf("%d\n", _strtonum(argv[1]) * _strtonum(argv[2]));
 	return (0);
 }
