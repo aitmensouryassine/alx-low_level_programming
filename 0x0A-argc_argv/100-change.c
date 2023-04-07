@@ -31,9 +31,9 @@ int main(int argc, char **argv)
 
 	while (amount)
 	{
-		for (i = 0; i <= size; i++)
+		for (i = 0; i < size; i++)
 		{
-			if (amount % cents[i] == 0)
+			if (amount - cents[i] >= 0)
 			{
 				amount -= cents[i];
 				count++;
