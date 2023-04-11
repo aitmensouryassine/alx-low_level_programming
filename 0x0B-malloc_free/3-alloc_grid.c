@@ -1,5 +1,5 @@
 #include "main.h"
-#include <stdio.h>
+0;10;1c#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -29,7 +29,7 @@ int **alloc_grid(int width, int height)
 		if (*(grid + h) == NULL)
 		{
 			free(grid);
-			for (i = 0; i < h; i++)
+			for (i = 0; i <= h; i++)
 				free(grid + i);
 			return (NULL);
 		}
