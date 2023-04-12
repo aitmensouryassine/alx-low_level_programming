@@ -4,31 +4,33 @@
 #include <string.h>
 
 /**
- * strtow - splits a string into words
+ * wordcount - counts words in a string
  * @str: the string
- * Return: pointer to an array of strings (words) on success
- * and NULL on failure
+ * @l: string length
+ * Return: number of words as an integer
  */
-char **strtow(char *str)
+int wordcount(char *str, int l)
 {
-	char **arr;
-	int wc = 0, cc = 0, i, j, k, l = strlen(str);
-
-	if (str == NULL || l == 0)
-		return (NULL);
+	int wc = 0, i;
 
 	for (i = 0; i <= l; i++)
 		if (str[i] != 32 && (str[i + 1] == 32 || str[i + 1] == '\0'))
 			wc++;
 
-	if (wc == 0)
-		return (NULL);
+	return (wc);
+}
 
-	arr = (char **)malloc(sizeof(char *) * wc + 1);
-	if (arr == NULL)
-		return (NULL);
+/**
+ * allocate2D - allocate the second dimension of a 2D array
+ * @arr: the arr
+ * @str: the string
+ * @l: string length
+ * Return: return NULL on failure, 0 on success
+ */
+int *allocate2D(char **arr, char *str, int l)
+{
+	int i, j = 0, k, cc = 0;
 
-	j = 0;
 	for (i = 0; i <= l; i++)
 	{
 		if (str[i] == 32 || str[i] == '\0')
@@ -53,10 +55,21 @@ char **strtow(char *str)
 		if (str[i] != 32)
 			cc++;
 	}
-	*(arr + wc) = NULL;
 
-	j = 0;
-	k = 0;
+	return (0);
+}
+
+/**
+ * _strtow - fill a 2d array with words from a string
+ * @arr: the arr
+ * @str: the string
+ * @l: string length
+ * Return: nothing
+ */
+void _strtow(char **arr, char *str, int l)
+{
+	int j = 0, k = 0, i;
+
 	for (i = 0; i < l; i++)
 	{
 		if (str[i] == 32)
@@ -75,6 +88,35 @@ char **strtow(char *str)
 			k++;
 		}
 	}
+}
+/**
+ * strtow - splits a string into words
+ * @str: the string
+ * Return: pointer to an array of strings (words) on success
+ * and NULL on failure
+ */
+char **strtow(char *str)
+{
+	char **arr;
+	int wc, l = strlen(str);
+
+	if (str == NULL || l == 0)
+		return (NULL);
+
+	wc = wordcount(str, l);
+
+	if (wc == 0)
+		return (NULL);
+
+	arr = (char **)malloc(sizeof(char *) * wc + 1);
+	if (arr == NULL)
+		return (NULL);
+
+	allocate2D(arr, str, l);
+
+	*(arr + wc) = NULL;
+
+	_strtow(arr, str, l);
 
 	return (arr);
 }
