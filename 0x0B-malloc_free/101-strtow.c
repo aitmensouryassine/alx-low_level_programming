@@ -37,7 +37,7 @@ int *allocate2D(char **arr, char *str, int l)
 		{
 			if (cc > 0)
 			{
-				*(arr + j) = (char *)malloc(sizeof(char) * cc + 1);
+				*(arr + j) = (char *)malloc(sizeof(char) * (cc + 1));
 				if (*(arr + j) == NULL)
 				{
 					for (k = 0; k <= j; k++)
@@ -108,7 +108,7 @@ char **strtow(char *str)
 	if (wc == 0)
 		return (NULL);
 
-	arr = (char **)malloc(sizeof(char *) * wc + 1);
+	arr = (char **)malloc(sizeof(char *) * (wc + 1));
 	if (arr == NULL)
 		return (NULL);
 
