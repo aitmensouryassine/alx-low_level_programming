@@ -21,6 +21,9 @@ char **strtow(char *str)
 		if (str[i] != 32 && (str[i + 1] == 32 || str[i + 1] == '\0'))
 			wc++;
 
+	if (wc == 0)
+		return (NULL);
+
 	arr = (char **)malloc(sizeof(char *) * wc + 1);
 	if (arr == NULL)
 		return (NULL);
@@ -50,10 +53,11 @@ char **strtow(char *str)
 		if (str[i] != 32)
 			cc++;
 	}
+	*(arr + wc) = NULL;
 
 	j = 0;
 	k = 0;
-	for (i = 0; i <= l; i++)
+	for (i = 0; i < l; i++)
 	{
 		if (str[i] == 32)
 		{
@@ -71,7 +75,6 @@ char **strtow(char *str)
 			k++;
 		}
 	}
-	*(arr + wc) = NULL;
 
 	return (arr);
 }
