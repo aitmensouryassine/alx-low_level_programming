@@ -12,8 +12,8 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
 	char *newptr;
 	char *oldptr = (char *)ptr;
-	unsigned int nmoe = old_size / sizeof(char);
-	unsigned int nmnl = new_size / sizeof(char), i = 0;
+	unsigned int n_old_ele = old_size / sizeof(char);
+	unsigned int n_new_ele = new_size / sizeof(char), i = 0;
 
 	if (old_size == new_size)
 		return (ptr);
