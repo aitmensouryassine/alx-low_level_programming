@@ -175,7 +175,6 @@ int main(int argc, char **argv)
 
 	for (i = 0; i < l1; i++, k = 0)
 	{
-		printf("mul %s res %s\n", mul, res);
 		for (j = 0; j < l2; j++, k++, tmp = tmp / 10)
 		{
 			tmp = (num1[i] - '0') * (num2[j] - '0') + tmp;
