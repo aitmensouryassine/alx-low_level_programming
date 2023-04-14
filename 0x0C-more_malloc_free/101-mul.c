@@ -148,6 +148,8 @@ char *infinite_add(char *n1, char *n2)
 	r = _realloc(r, (k + 1));
 	r[k] = '\0';
 
+	free(n1), free(n2);
+
 	rev_string(r);
 	return (r);
 }
