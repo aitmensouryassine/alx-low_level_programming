@@ -156,6 +156,12 @@ char *add_zero_to_end(char *s, int num)
 	return (newstr);
 }
 
+/**
+ * main - multiplies two positives numbers
+ * @argc: arguments count
+ * @argv: arguments vector
+ * Return: always 0 (success)
+ */
 int main(int argc, char **argv)
 {
 	char *num1, *num2;
@@ -164,18 +170,12 @@ int main(int argc, char **argv)
 	int rest = 0;
 
 	if (argc != 3)
-	{
-		printf("Error\n");
-		exit(98);
-	}
+		printf("Error\n"), exit(98);
 
 	num1 = argv[1], num2 = argv[2];
 
 	if (_containsSym(num1) || _containsSym(num2) || argc != 3)
-	{
-		printf("Error\n");
-		exit(98);
-	}
+		printf("Error\n"), exit(98);
 
 	rev_string(num1), rev_string(num2);
 
@@ -187,18 +187,14 @@ int main(int argc, char **argv)
 		{
 			rest = (num1[i] - '0') * (num2[j] - '0') + rest;
 			s = _realloc(s, (j + 1));
-			s[j] = (rest % 10) + '0';
-			rest = rest / 10;
+			s[j] = (rest % 10) + '0', rest = rest / 10;
 			if (!num2[j + 1] && rest != 0)
 			{
-				s = _realloc(s, (j + 2));
-				s[j + 1] = rest + '0';
+				s = _realloc(s, (j + 2)), s[j + 1] = rest + '0';
 			}
 			j++;
 		}
-		rev_string(s);
-		s = add_zero_to_end(s, i);
-		r = infinite_add(r, s, r);
+		rev_string(s), s = add_zero_to_end(s, i), r = infinite_add(r, s, r);
 		i++;
 	}
 	printf("%s\n", r);
