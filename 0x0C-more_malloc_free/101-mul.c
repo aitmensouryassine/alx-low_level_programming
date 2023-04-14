@@ -173,31 +173,30 @@ int main(int argc, char **argv)
 
 	rev_string(num1), rev_string(num2);
 
-	while (i < l1)
+	for (i = 0; i < l1; i++, k = 0)
 	{
-		j = 0, k = 0;
-		while (j < l2)
+		printf("mul %s res %s\n", mul, res);
+		for (j = 0; j < l2; j++, k++, tmp = tmp / 10)
 		{
 			tmp = (num1[i] - '0') * (num2[j] - '0') + tmp;
 			mul = _realloc(mul, (k + 1));
 			mul[k] = tmp % 10 + '0';
 
-			if (j == l2 - 1)
+			if (!num2[j + 1] && tmp / 10 != 0)
 			{
-				k++;
-				mul = _realloc(mul, (k + 1));
+				k++, mul = _realloc(mul, (k + 1));
 				mul[k] = tmp / 10 + '0';
 			}
-			tmp = tmp / 10, j++, k++;
 		}
 		mul = _realloc(mul, (k + 1));
-		mul[k] = '\0', tmp = 0, i++;
+		mul[k] = '\0', tmp = 0;
 
 		rev_string(mul);
 		mul = add_zero_to_end(mul, i);
 		res = infinite_add(mul, res);
+		free(mul), mul = NULL;
 	}
 
-	printf("%s\n", res);
+	printf("%s\n", res), free(res);
 	return (0);
 }
