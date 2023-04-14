@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <string.h>
 
 /**
@@ -19,83 +19,6 @@ void rev_string(char *s)
 		s[i] = s[len - i - 1];
 		s[len - i - 1] = tmp;
 	}
-}
-
-/**
- * _realloc - reallocates a memory block using malloc and free
- * @oldstr: pointer to the old allocated memory
- * @new_size: is the new size, in bytes of the new memory block
- * Return: pointer to the new allocated memory, or NULL on failure
- */
-char *_realloc(char *oldstr, unsigned int new_size)
-{
-	char *newptr;
-	unsigned int i = 0;
-
-	newptr = malloc(sizeof(char) * (new_size + 1));
-	if (newptr == NULL)
-		return (NULL);
-
-	while (i < (new_size - 1))
-	{
-		*(newptr + i) = *(oldstr + i);
-		i++;
-	}
-	*(newptr + new_size) = '\0';
-
-	free(oldstr);
-	return (newptr);
-}
-
-/**
- * infinite_add - adds two numbers
- * @n1: first number (a string)
- * @n2: second number (a string)
- * @r: result string
- * Return: pointer to the resulting string @r
- */
-char *infinite_add(char *n1, char *n2, char *r)
-{
-	int l1, l2, n1v, n2v, i, j, k, tmp;
-
-	tmp = 0;
-	l1 = n1 == NULL ? 0 : strlen(n1);
-	l2 = n2 == NULL ? 0 : strlen(n2);
-	k = 0;
-
-	for (i = l1 - 1, j = l2 - 1; i >= 0 || j >= 0; i--, j--, k++)
-	{
-		if (j < 0)
-			n2v = 0;
-		else
-			n2v = (n2[j] - '0');
-
-		if (i < 0)
-			n1v = 0;
-		else
-			n1v = (n1[i] - '0');
-
-		tmp = tmp + n1v + n2v;
-		if (i <= 0 && j <= 0)
-		{
-			r = _realloc(r, (k + 1));
-			r[k++] = tmp % 10 + '0';
-			if (tmp / 10)
-			{
-				r = _realloc(r, (k + 1));
-				r[k] = tmp / 10 + '0';
-			}
-		}
-		else
-		{
-			r = _realloc(r, (k + 1));
-			r[k] = tmp % 10 + '0';
-		}
-		tmp = tmp / 10;
-	}
-
-	rev_string(r);
-	return (r);
 }
 
 /**
@@ -121,6 +44,31 @@ int _containsSym(char *s)
 }
 
 /**
+ * _realloc - reallocates a memory block using malloc and free
+ * @old: pointer to the old allocated memory
+ * @size: is the new size, in bytes of the new memory block
+ * Return: pointer to the new allocated memory, or NULL on failure
+ */
+char *_realloc(char *old, int size)
+{
+	char *new;
+	int i = 0;
+
+	new = malloc(sizeof(new) * size);
+	if (new == NULL)
+		return (NULL);
+
+	while (i < (size - 1))
+	{
+		*(new + i) = *(old + i);
+		i++;
+	}
+
+	free(old);
+	return (new);
+}
+
+/**
  * add_zero_to_end - add zero to end of a string
  * @s: the string
  * @num: number of zeros to add
@@ -135,7 +83,7 @@ char *add_zero_to_end(char *s, int num)
 	if (num == 0)
 		return (s);
 
-	newstr = malloc(sizeof(char) * (l + num + 1));
+	newstr = malloc(sizeof(char) * (l + num - 1));
 	if (newstr == NULL)
 		return (NULL);
 
@@ -146,7 +94,7 @@ char *add_zero_to_end(char *s, int num)
 		i++;
 	}
 
-	for (i = l; i < (l + num); i++)
+	for (i = l; i < (l + num - 1); i++)
 	{
 		*(newstr + i) = '0';
 	}
@@ -157,6 +105,54 @@ char *add_zero_to_end(char *s, int num)
 }
 
 /**
+ * infinite_add - adds two numbers
+ * @n1: first number (a string)
+ * @n2: second number (a string)
+ * Return: pointer to the resulting string
+ */
+char *infinite_add(char *n1, char *n2)
+{
+	int l1, l2, n1v, n2v, i, j, k, tmp;
+	char *r = NULL;
+
+	tmp = 0;
+	l1 = n1 == NULL ? 0 : strlen(n1);
+	l2 = n2 == NULL ? 0 : strlen(n2);
+	k = 0;
+
+	for (i = l1 - 1, j = l2 - 1; i >= 0 || j >= 0; i--, j--, k++)
+	{
+		if (j < 0)
+			n2v = 0;
+		else
+			n2v = (n2[j] - '0');
+
+		if (i < 0)
+			n1v = 0;
+		else
+			n1v = (n1[i] - '0');
+
+		tmp = tmp + n1v + n2v;
+
+		r = _realloc(r, (k + 1));
+		r[k] = tmp % 10 + '0';
+
+		if (i <= 0 && j <= 0 && tmp / 10 != 0)
+		{
+			k++;
+			r = _realloc(r, (k + 1));
+			r[k] = tmp / 10 + '0';
+		}
+		tmp = tmp / 10;
+	}
+	r = _realloc(r, (k + 1));
+	r[k] = '\0';
+
+	rev_string(r);
+	return (r);
+}
+
+/**
  * main - multiplies two positives numbers
  * @argc: arguments count
  * @argv: arguments vector
@@ -164,39 +160,44 @@ char *add_zero_to_end(char *s, int num)
  */
 int main(int argc, char **argv)
 {
-	char *num1, *num2;
-	unsigned int i, j;
-	char *s = NULL, *r = NULL;
-	int rest = 0;
+	char *num1, *num2, *mul = NULL, *res = NULL;
+	int l1, l2, i = 0, j = 0, k = 0, tmp = 0;
 
 	if (argc != 3)
 		printf("Error\n"), exit(98);
 
-	num1 = argv[1], num2 = argv[2];
+	num1 = argv[1], num2 = argv[2], l1 = strlen(num1), l2 = strlen(num2);
 
-	if (_containsSym(num1) || _containsSym(num2) || argc != 3)
+	if (_containsSym(num1) || _containsSym(num2))
 		printf("Error\n"), exit(98);
 
 	rev_string(num1), rev_string(num2);
 
-	i = 0;
-	while (num1[i])
+	while (i < l1)
 	{
-		j = 0;
-		while (num2[j])
+		j = 0, k = 0;
+		while (j < l2)
 		{
-			rest = (num1[i] - '0') * (num2[j] - '0') + rest;
-			s = _realloc(s, (j + 1));
-			s[j] = (rest % 10) + '0', rest = rest / 10;
-			if (!num2[j + 1] && rest != 0)
+			tmp = (num1[i] - '0') * (num2[j] - '0') + tmp;
+			mul = _realloc(mul, (k + 1));
+			mul[k] = tmp % 10 + '0';
+
+			if (j == l2 - 1)
 			{
-				s = _realloc(s, (j + 2)), s[j + 1] = rest + '0';
+				k++;
+				mul = _realloc(mul, (k + 1));
+				mul[k] = tmp / 10 + '0';
 			}
-			j++;
+			tmp = tmp / 10, j++, k++;
 		}
-		rev_string(s), s = add_zero_to_end(s, i), r = infinite_add(r, s, r);
-		i++;
+		mul = _realloc(mul, (k + 1));
+		mul[k] = '\0', tmp = 0, i++;
+
+		rev_string(mul);
+		mul = add_zero_to_end(mul, i);
+		res = infinite_add(mul, res);
 	}
-	printf("%s\n", r);
+
+	printf("%s\n", res);
 	return (0);
 }
