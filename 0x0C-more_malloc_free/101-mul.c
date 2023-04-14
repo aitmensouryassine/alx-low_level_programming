@@ -83,7 +83,7 @@ char *add_zero_to_end(char *s, int num)
 	if (num == 0)
 		return (s);
 
-	newstr = malloc(sizeof(char) * (l + num - 1));
+	newstr = malloc(sizeof(newstr) * (l + num));
 	if (newstr == NULL)
 		return (NULL);
 
@@ -94,7 +94,7 @@ char *add_zero_to_end(char *s, int num)
 		i++;
 	}
 
-	for (i = l; i < (l + num - 1); i++)
+	for (i = l; i < (l + num); i++)
 	{
 		*(newstr + i) = '0';
 	}
