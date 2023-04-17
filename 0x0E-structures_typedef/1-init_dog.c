@@ -1,4 +1,3 @@
-#include <stdlib.h>
 #include "dog.h"
 
 /**
@@ -8,6 +7,7 @@
  * @age: age of the dog
  * @owner: name of the owner
 */
+
 void init_dog(struct dog *d, char *name, float age, char *owner)
 {
 	d->name = name;
