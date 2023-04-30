@@ -1,18 +1,22 @@
 #include "lists.h"
 
 /**
- * is_node_exist - checks if the address of node already exists
- * @ptr: pointer to addresses of nodes
- * @p: a pointer to thje address to check
- * Return: 1 when exist, and 0 when not
+ * is_node_checked - checks if a node already checked
+ * @head: head of the list
+ * @curr: the current node
+ * Return: 1 if checked, and 0 when not
  */
-int is_node_exist(int **ptr, int *p)
+int is_node_checked(const listint_t *head, const listint_t *curr, size_t nodes)
 {
-	int i = 0;
+	size_t i = 0;
 
-	while (ptr[i])
-		if (ptr[i++] == p)
+	while (head && i < nodes)
+	{
+		if (head == curr)
 			return (1);
+		head = head->next;
+		i++;
+	}
 
 	return (0);
 }
@@ -25,27 +29,19 @@ int is_node_exist(int **ptr, int *p)
 size_t print_listint_safe(const listint_t *head)
 {
 	size_t nodes = 0;
-	const listint_t *tmp = head;
-	int **ptr;
-	int i = 0;
+	const listint_t *curr = head;
 
-	ptr = malloc(sizeof(**ptr));
-
-	while (tmp)
+	while (curr)
 	{
-		if (is_node_exist(ptr, (void *)tmp))
+		printf("[%p] %d\n", (void *)curr, curr->n);
+		nodes++;
+		curr = curr->next;
+
+		if (is_node_checked(head, curr, nodes))
 		{
-			printf("-> [%p] %d\n", (void *)tmp, tmp->n);
+			printf("-> [%p] %d\n", (void *)curr, curr->n);
 			return (nodes);
 		}
-		printf("[%p] %d\n", (void *)tmp, tmp->n);
-		nodes++;
-
-		*(ptr + i) = malloc(sizeof(ptr));
-		*(ptr + i) = (int *)tmp;
-		i++;
-
-		tmp = tmp->next;
 	}
 
 	return (nodes);
