@@ -42,6 +42,8 @@ size_t print_listint_safe(const listint_t *head)
 			printf("-> [%p] %d\n", (void *)curr, curr->n);
 			return (nodes);
 		}
+		if (!head)
+			exit(98);
 	}
 
 	return (nodes);
