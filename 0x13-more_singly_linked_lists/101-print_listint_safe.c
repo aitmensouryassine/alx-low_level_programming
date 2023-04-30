@@ -10,7 +10,7 @@ int is_node_checked(const listint_t *head, const listint_t *curr, size_t nodes)
 {
 	size_t i = 0;
 
-	while (head && i < nodes)
+	while (i < nodes)
 	{
 		if (head == curr)
 			return (1);
