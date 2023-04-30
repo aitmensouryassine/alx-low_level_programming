@@ -4,6 +4,7 @@
  * is_node_checked - checks if a node already checked
  * @head: head of the list
  * @curr: the current node
+ * @nodes: number of checked nodes
  * Return: 1 if checked, and 0 when not
  */
 int is_node_checked(const listint_t *head, const listint_t *curr, size_t nodes)
