@@ -33,6 +33,9 @@ listint_t *find_listint_loop(listint_t *head)
 	size_t nodes = 0;
 	listint_t *curr = head;
 
+	if (!head)
+		return (NULL);
+
 	while (curr)
 	{
 		curr = curr->next;
@@ -42,9 +45,6 @@ listint_t *find_listint_loop(listint_t *head)
 		{
 			return (curr);
 		}
-
-		if (!head)
-			exit(98);
 	}
 
 	return (NULL);
