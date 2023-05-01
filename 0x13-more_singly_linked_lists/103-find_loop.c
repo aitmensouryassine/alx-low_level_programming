@@ -36,7 +36,7 @@ listint_t *find_listint_loop(listint_t *head)
 	if (!head)
 		return (NULL);
 
-	f = first_intersection(head);
+	f = has_loop(head);
 	if (!f)
 		return (NULL);
 
