@@ -1,7 +1,13 @@
 #include "lists.h"
 
-
-listint_t *first_intersection(listint_t *head)
+/**
+ * has_loop - check if a linked list has a loop
+ * it uses Floyd's Cycle Detection Algorithm
+ * @head: the head of the list
+ * Return: the node where the intersection happened,
+ * or NULL if there is no loop
+ */
+listint_t *has_loop(listint_t *head)
 {
 	listint_t *f = head, *s = head;
 
