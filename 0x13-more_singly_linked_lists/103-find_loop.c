@@ -24,6 +24,9 @@ listint_t *find_listint_loop(listint_t *head)
 		}
 	}
 
+	if (!s)
+		return (NULL);
+
 	s = head;
 	while (s != f && s && f)
 	{
