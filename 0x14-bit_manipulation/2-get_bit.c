@@ -8,7 +8,6 @@
  */
 int get_bit(unsigned long int n, unsigned int index)
 {
-	unsigned long int tmp = n;
 	unsigned int div_count = 0;
 	unsigned int bits = 64;
 
@@ -18,13 +17,8 @@ int get_bit(unsigned long int n, unsigned int index)
 	if (n == 0)
 		return (0);
 
-	while (tmp)
-	{
-		tmp = tmp >> 1; /* tmp = tmp / 2 */
-		div_count++;
-	}
 
-	while (div_count--)
+	for (div_count = 0; div_count < bits; div_count++)
 	{
 		if (div_count == index)
 			return ((n >> div_count) & 1);
