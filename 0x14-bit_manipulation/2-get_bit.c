@@ -9,7 +9,7 @@
 int get_bit(unsigned long int n, unsigned int index)
 {
 	unsigned long int tmp = n;
-	int div_count = 0;
+	unsigned int div_count = 0;
 	unsigned int bits = 64;
 
 	if (index > bits)
@@ -27,7 +27,7 @@ int get_bit(unsigned long int n, unsigned int index)
 	while (div_count--)
 	{
 		if (div_count == index)
-			return ((n >> div_count) & 1)
+			return ((n >> div_count) & 1);
 	}
 
 	return (-1);
