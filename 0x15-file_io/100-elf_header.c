@@ -17,7 +17,7 @@ void check_elf(Elf64_Ehdr *header)
 	    header->e_ident[3] != 'F')
 	{
 		dprintf(STDERR_FILENO, "Error: The file is not an ELF file\n");
-                exit(98);
+		exit(98);
 	}
 }
 
