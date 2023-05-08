@@ -34,7 +34,7 @@ int main(int argc, char **argv)
 	int op_from, op_to, rd_from, cl, wr_to;
 
 	if (argc != 3)
-		error(98, "Usage: cp file_from file_to", "");
+		error(97, "Usage: cp file_from file_to", "");
 
 	file_from = argv[1];
 	file_to = argv[2];
@@ -58,13 +58,13 @@ int main(int argc, char **argv)
 	if (cl < 0)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", op_from);
-		exit(99);
+		exit(100);
 	}
 	cl = close(op_to);
 	if (cl < 0)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", op_to);
-		exit(99);
+		exit(100);
 	}
 
 	return (0);
