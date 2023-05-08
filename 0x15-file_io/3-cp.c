@@ -34,7 +34,7 @@ int main(int argc, char **argv)
 	int op_from, op_to, rd_from, cl, wr_to;
 
 	if (argc != 3)
-		error("Usage: cp file_from file_to", 98);
+		error(98, "Usage: cp file_from file_to", "");
 
 	file_from = argv[1];
 	file_to = argv[2];
@@ -45,7 +45,7 @@ int main(int argc, char **argv)
 
 	op_to = creat(file_to, 0664);
 	if (op_to < 0)
-		erro(99, "Error: Can't write to ", file_to);
+		error(99, "Error: Can't write to ", file_to);
 
 	while ((rd_from = read(op_from, buffer, BUFFER_SIZE)) > 0)
 	{
