@@ -179,6 +179,15 @@ void type(Elf64_Ehdr *header)
 	}
 }
 /**
+ * entrypointaddr - print entry point address
+ * @header: the elf header
+ */
+void entrypointaddr(Elf64_Ehdr *header)
+{
+	printf("  Entry point address:               ");
+	printf("%lx\n", header->e_entry);
+}
+/**
  * main - displays the information contained in the ELF header at
  * the start of an ELF file.
  * @argc: argument count
@@ -212,6 +221,7 @@ int main(int argc, char **argv)
 	osabi(header);
 	abiversion(header);
 	type(header);
+	entrypointaddr(header);
 
 	return (0);
 }
