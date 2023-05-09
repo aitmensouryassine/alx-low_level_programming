@@ -10,7 +10,7 @@
  */
 void check_elf(Elf64_Ehdr *header)
 {
-	if (header->e_type != 0x7f &&
+	if (header->e_ident[0] != 0x7f &&
 	    header->e_ident[1] != 'E' &&
 	    header->e_ident[2] != 'L' &&
 	    header->e_ident[3] != 'F')
@@ -107,31 +107,31 @@ void osabi(Elf64_Ehdr *header)
 
 	if (header->e_ident[7] == ELFOSABI_NONE ||
 	    header->e_ident[7] == ELFOSABI_SYSV)
-		printf("UNIX System V\n");
+		printf("UNIX - System V\n");
 
 	if (header->e_ident[7] == ELFOSABI_HPUX)
-		printf("HP-UX\n");
+		printf("UNIX - HP-UX\n");
 
 	if (header->e_ident[7] == ELFOSABI_NETBSD)
-		printf("NetBSD\n");
+		printf("UNIX - NetBSD\n");
 
 	if (header->e_ident[7] == ELFOSABI_LINUX)
-		printf("Linux\n");
+		printf("UNIX - Linux\n");
 
 	if (header->e_ident[7] == ELFOSABI_SOLARIS)
-		printf("Solaris\n");
+		printf("UNIX - Solaris\n");
 
 	if (header->e_ident[7] == ELFOSABI_IRIX)
-		printf("IRIX\n");
+		printf("UNIX - IRIX\n");
 
 	if (header->e_ident[7] == ELFOSABI_FREEBSD)
-		printf("FreeBSD\n");
+		printf("UNIX - FreeBSD\n");
 
 	if (header->e_ident[7] == ELFOSABI_TRU64)
-		printf("TRU64 UNIX\n");
+		printf("UNIX - TRU64\n");
 
 	if (header->e_ident[7] == ELFOSABI_ARM)
-		printf("ARM architecture\n");
+		printf("UNIX - ARM\n");
 
 	if (header->e_ident[7] == ELFOSABI_STANDALONE)
 		printf("Stand-alone (embedded)\n");
@@ -150,29 +150,34 @@ void abiversion(Elf64_Ehdr *header)
  */
 void type(Elf64_Ehdr *header)
 {
+	int e_type = header->e_type;
+
+	if (header->e_ident[5] == ELFDATA2MSB)
+		e_type = e_type >> 8;
+
 	printf("  Type:                              ");
 
-	if (header->e_type == ET_NONE)
+	if (e_type == ET_NONE)
 	{
 		printf("NONE (Unknown type)\n");
 		return;
 	}
-	if (header->e_type == ET_REL)
+	if (e_type == ET_REL)
 	{
 		printf("REL (Relocatable file)\n");
 		return;
 	}
-	if (header->e_type == ET_EXEC)
+	if (e_type == ET_EXEC)
 	{
 		printf("EXEC (Executable file)\n");
 		return;
 	}
-	if (header->e_type == ET_NONE)
+	if (e_type == ET_NONE)
 	{
 		printf("DYN (Shared object file)\n");
 		return;
 	}
-	if (header->e_type == ET_CORE)
+	if (e_type == ET_CORE)
 	{
 		printf("CORE (Core file)\n");
 		return;
@@ -180,12 +185,24 @@ void type(Elf64_Ehdr *header)
 }
 /**
  * entrypointaddr - print entry point address
- * @header: the elf header
+ * @h: the elf header
  */
-void entrypointaddr(Elf64_Ehdr *header)
+void entrypointaddr(Elf64_Ehdr *h)
 {
+	long unsigned int e = h->e_entry;
+
 	printf("  Entry point address:               ");
-	printf("%lx\n", header->e_entry);
+
+	if (h->e_ident[5] == ELFDATA2MSB)
+	{
+		e = ((e << 8) & 0xFF00FF00) |
+			((e >> 8) & 0xFF00FF);
+		e = (e << 16) | (e >> 16);
+	}
+	if (h->e_ident[4] == ELFCLASS32)
+		printf("%#x\n", (unsigned int)e);
+	else
+		printf("%#lx\n", e);
 }
 /**
  * main - displays the information contained in the ELF header at
@@ -198,7 +215,7 @@ void entrypointaddr(Elf64_Ehdr *header)
 int main(int argc, char **argv)
 {
 	char *elf;
-	int fd, rd;
+	int fd, rd, c;
 	Elf64_Ehdr *header;
 
 	if (argc != 2)
@@ -222,6 +239,11 @@ int main(int argc, char **argv)
 	abiversion(header);
 	type(header);
 	entrypointaddr(header);
+
+	c = close(fd);
+	if (c < 0)
+		error(98, "Error: Can't close elf file %s\n", elf);
+	free(header);
 
 	return (0);
 }
