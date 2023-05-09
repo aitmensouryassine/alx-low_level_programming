@@ -150,7 +150,7 @@ void abiversion(Elf64_Ehdr *header)
  */
 void type(Elf64_Ehdr *header)
 {
-	int e_type = header->e_type;
+	unsigned int e_type = header->e_type;
 
 	if (header->e_ident[5] == ELFDATA2MSB)
 		e_type = e_type >> 8;
@@ -189,7 +189,7 @@ void type(Elf64_Ehdr *header)
  */
 void entrypointaddr(Elf64_Ehdr *h)
 {
-	long unsigned int e = h->e_entry;
+	unsigned long int e = h->e_entry;
 
 	printf("  Entry point address:               ");
 
