@@ -137,6 +137,48 @@ void osabi(Elf64_Ehdr *header)
 		printf("Stand-alone (embedded)\n");
 }
 /**
+ * abiversion - prints the version of the ABI
+ * @header: the elf header
+ */
+void abiversion(Elf64_Ehdr *header)
+{
+	printf("  ABI Version:                       %d\n", header->e_ident[8]);
+}
+/**
+ * type - prints the object file type
+ * @header: the elf header
+ */
+void type(Elf64_Ehdr *header)
+{
+	printf("  Type:                              ");
+
+	if (header->e_type == ET_NONE)
+	{
+		printf("NONE (Unknown type)\n");
+		return;
+	}
+	if (header->e_type == ET_REL)
+	{
+		printf("REL (Relocatable file)\n");
+		return;
+	}
+	if (header->e_type == ET_EXEC)
+	{
+		printf("EXEC (Executable file)\n");
+		return;
+	}
+	if (header->e_type == ET_NONE)
+	{
+		printf("DYN (Shared object file)\n");
+		return;
+	}
+	if (header->e_type == ET_CORE)
+	{
+		printf("CORE (Core file)\n");
+		return;
+	}
+}
+/**
  * main - displays the information contained in the ELF header at
  * the start of an ELF file.
  * @argc: argument count
@@ -168,6 +210,8 @@ int main(int argc, char **argv)
 	data(header);
 	version(header);
 	osabi(header);
+	abiversion(header);
+	type(header);
 
 	return (0);
 }
