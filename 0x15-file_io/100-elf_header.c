@@ -50,7 +50,23 @@ void magic(Elf64_Ehdr *header)
 	}
 	printf("\n");
 }
+/**
+ * class - prints the architecture for the binary
+ * @header: the elf header
+ */
+void class(Elf64_Ehdr *header)
+{
+	printf("  Class:                             ");
 
+	if (header->e_ident[4] == ELFCLASSNONE)
+		printf("NONE\n");
+
+	if (header->e_ident[4] == ELFCLASS32)
+		printf("ELF32\n");
+
+	if (header->e_ident[4] == ELFCLASS64)
+		printf("ELF64\n");
+}
 /**
  * main - displays the information contained in the ELF header at
  * the start of an ELF file.
@@ -79,6 +95,7 @@ int main(int argc, char **argv)
 
 	check_elf(header);
 	magic(header);
+	class(header);
 
 	return (0);
 }
