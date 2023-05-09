@@ -3,7 +3,6 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <elf.h>
-#include <string.h>
 
 /**
  * check_elf - check if a file is an elf file or not
@@ -85,6 +84,59 @@ void data(Elf64_Ehdr *header)
 		printf("2's complement, big-endian\n");
 }
 /**
+ * version - print the version number of the ELF specification
+ * @header: the elf header
+ */
+void version(Elf64_Ehdr *header)
+{
+	printf("  Version:                           ");
+
+	if (header->e_ident[6] == EV_NONE)
+		printf("Invalid version\n");
+
+	if (header->e_ident[6] == EV_CURRENT)
+		printf("%d (current)\n", EV_CURRENT);
+}
+/**
+ * osabi - prints the operating system and ABI
+ * @header: the elf header
+ */
+void osabi(Elf64_Ehdr *header)
+{
+	printf("  OS/ABI:                            ");
+
+	if (header->e_ident[7] == ELFOSABI_NONE ||
+	    header->e_ident[7] == ELFOSABI_SYSV)
+		printf("UNIX System V\n");
+
+	if (header->e_ident[7] == ELFOSABI_HPUX)
+		printf("HP-UX\n");
+
+	if (header->e_ident[7] == ELFOSABI_NETBSD)
+		printf("NetBSD\n");
+
+	if (header->e_ident[7] == ELFOSABI_LINUX)
+		printf("Linux\n");
+
+	if (header->e_ident[7] == ELFOSABI_SOLARIS)
+		printf("Solaris\n");
+
+	if (header->e_ident[7] == ELFOSABI_IRIX)
+		printf("IRIX\n");
+
+	if (header->e_ident[7] == ELFOSABI_FREEBSD)
+		printf("FreeBSD\n");
+
+	if (header->e_ident[7] == ELFOSABI_TRU64)
+		printf("TRU64 UNIX\n");
+
+	if (header->e_ident[7] == ELFOSABI_ARM)
+		printf("ARM architecture\n");
+
+	if (header->e_ident[7] == ELFOSABI_STANDALONE)
+		printf("Stand-alone (embedded)\n");
+}
+/**
  * main - displays the information contained in the ELF header at
  * the start of an ELF file.
  * @argc: argument count
@@ -114,6 +166,8 @@ int main(int argc, char **argv)
 	magic(header);
 	class(header);
 	data(header);
+	version(header);
+	osabi(header);
 
 	return (0);
 }
