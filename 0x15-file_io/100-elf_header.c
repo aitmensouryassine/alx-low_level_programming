@@ -68,6 +68,23 @@ void class(Elf64_Ehdr *header)
 		printf("ELF64\n");
 }
 /**
+ * data - print the data encoding of the processor-specific data
+ * @header: the elf header
+ */
+void data(Elf64_Ehdr *header)
+{
+	printf("  Data:                              ");
+
+	if (header->e_ident[5] == ELFDATANONE)
+		printf("Unknown data format\n");
+
+	if (header->e_ident[5] == ELFDATA2LSB)
+		printf("2's complement, little-endian\n");
+
+	if (header->e_ident[5] == ELFDATA2MSB)
+		printf("2's complement, big-endian\n");
+}
+/**
  * main - displays the information contained in the ELF header at
  * the start of an ELF file.
  * @argc: argument count
@@ -96,6 +113,7 @@ int main(int argc, char **argv)
 	check_elf(header);
 	magic(header);
 	class(header);
+	data(header);
 
 	return (0);
 }
