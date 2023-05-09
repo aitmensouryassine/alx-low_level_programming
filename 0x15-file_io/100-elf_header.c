@@ -22,6 +22,36 @@ void check_elf(Elf64_Ehdr *header)
 }
 
 /**
+ * error - print error and exit with code
+ * @code: the error code
+ * @format: the format string
+ * @str: a string
+ */
+void error(int code, char *format, char *str)
+{
+	dprintf(STDERR_FILENO, format, str);
+	exit(code);
+}
+
+/**
+ * magic - prints magic
+ * @header: the elf header
+ */
+void magic(Elf64_Ehdr *header)
+{
+	int i = 0;
+
+	printf("ELF Header:\n  Magic:  ");
+
+	while (i < 16)
+	{
+		printf(" %02x", header->e_ident[i]);
+		i++;
+	}
+	printf("\n");
+}
+
+/**
  * main - displays the information contained in the ELF header at
  * the start of an ELF file.
  * @argc: argument count
@@ -36,10 +66,7 @@ int main(int argc, char **argv)
 	Elf64_Ehdr *header;
 
 	if (argc != 2)
-	{
-		dprintf(STDERR_FILENO, "Usage: %s elf_file\n", argv[0]);
-		exit(96);
-	}
+		error(98, "Usage: %s elf_file\n", argv[0]);
 
 	header = malloc(sizeof(Elf64_Ehdr));
 
@@ -48,12 +75,10 @@ int main(int argc, char **argv)
 	fd = open(elf, O_RDONLY);
 	rd = read(fd, header, sizeof(header));
 	if (fd < 0 || rd < 0 || !header)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't open/read elf file %s\n", elf);
-		exit(97);
-	}
+		error(98, "Error: Can't open/read elf file %s\n", elf);
 
 	check_elf(header);
+	magic(header);
 
 	return (0);
 }
