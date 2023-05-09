@@ -240,10 +240,10 @@ int main(int argc, char **argv)
 	type(header);
 	entrypointaddr(header);
 
+	free(header);
 	c = close(fd);
 	if (c < 0)
 		error(98, "Error: Can't close elf file %s\n", elf);
-	free(header);
 
 	return (0);
 }
