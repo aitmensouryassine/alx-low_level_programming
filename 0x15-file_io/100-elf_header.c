@@ -152,9 +152,6 @@ void type(Elf64_Ehdr *header)
 {
 	unsigned int e_type = header->e_type;
 
-	if (header->e_ident[5] == ELFDATA2MSB)
-		e_type = e_type >> 8;
-
 	printf("  Type:                              ");
 
 	if (e_type == ET_NONE)
@@ -193,12 +190,6 @@ void entrypointaddr(Elf64_Ehdr *h)
 
 	printf("  Entry point address:               ");
 
-	if (h->e_ident[5] == ELFDATA2MSB)
-	{
-		e = ((e << 8) & 0xFF00FF00) |
-			((e >> 8) & 0xFF00FF);
-		e = (e << 16) | (e >> 16);
-	}
 	if (h->e_ident[4] == ELFCLASS32)
 		printf("%#x\n", (unsigned int)e);
 	else
