@@ -10,10 +10,11 @@
 size_t dlistint_len(const dlistint_t *h)
 {
 	size_t size = 0;
+	const dlistint_t *tmp = h;
 
-	while (h)
+	while (tmp)
 	{
-		h = h->next;
+		tmp = tmp->next;
 		size++;
 	}
 
