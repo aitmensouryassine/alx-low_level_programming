@@ -12,6 +12,9 @@ size_t dlistint_len(const dlistint_t *h)
 	size_t size = 0;
 	const dlistint_t *tmp = h;
 
+	while (tmp->prev)
+		tmp = tmp->prev;
+
 	while (tmp)
 	{
 		tmp = tmp->next;
