@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 /**
- * print_dlistin - prints all the elements of a dlistint_t list.
+ * print_dlistint - prints all the elements of a dlistint_t list.
  * @h: the head of the list
  * Return: the size of the list
  */
