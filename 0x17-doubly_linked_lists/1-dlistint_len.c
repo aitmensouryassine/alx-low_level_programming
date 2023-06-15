@@ -1,6 +1,4 @@
 #include "lists.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 /**
  * dlistint_len - prints all the elements of a dlistint_t list.
@@ -9,7 +7,7 @@
  */
 size_t dlistint_len(const dlistint_t *h)
 {
-	size_t size = 0;
+	int size = 0;
 
 	if (!h)
 		return (0);
