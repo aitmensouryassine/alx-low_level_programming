@@ -1,4 +1,6 @@
-#include "listst.h"
+#include "lists.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 /**
  * print_dlistin - prints all the elements of a dlistint_t list.
@@ -8,11 +10,11 @@
 size_t print_dlistint(const dlistint_t *h)
 {
 	size_t size = 0;
-	dlistint_t *tmp = h;
 
-	while (tmp)
+	while (h)
 	{
-		tmp = tmp->next;
+		printf("%d\n", h->n);
+		h = h->next;
 		size++;
 	}
 
