@@ -1,3 +1,3 @@
 #!/bin/bash
-LD_PRELOAD=libgm.so
-./gm 9 8 10 24 75 9
+wget -P /tmp https://github.com/aitmensouryassine/alx-low_level_programming/raw/master/0x18-dynamic_libraries/rand.so
+LD_PRELOAD=/tmp/rand.so
