@@ -10,46 +10,33 @@
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int index;
+	hash_node_t *head, *new_hash_node;
 
 	index = key_index((unsigned char *)key, ht->size);
-
-	return (insert_hash_node(&(ht->array[index]), key, value));
-}
-
-/**
- * insert_hash_node - insert a hash node to the linked list
- * @head :the head of the list
- * @key: the key
- * @value: the value
- * Return: 0 on success, 1 otherwise
- */
-int insert_hash_node(hash_node_t **head, const char *key,
-			      const char *value)
-{
-	hash_node_t *tmp = *head, *new_hash_node;
+	head = ht->array[index];
 
 	new_hash_node = create_hash_node(key, value);
 	if (!new_hash_node)
 		return (1);
 
-	if (!tmp)
+	if (!head)
 	{
-		*head = new_hash_node;
+		ht->array[index] = new_hash_node;
 		return (0);
 	}
 
-	while (tmp)
+	while (head)
 	{
-		if (strcmp(tmp->key, key) == 0)
+		if (strcmp(head->key, key) == 0)
 		{
-			strcpy(tmp->value, value);
+			strcpy(head->value, value);
 			return (0);
 		}
-		tmp = tmp->next;
+		head = head->next;
 	}
 
-	new_hash_node->next = *head;
-	*head = new_hash_node;
+	new_hash_node->next = ht->array[index];
+	ht->array[index] = new_hash_node;
 
 	return (0);
 }
