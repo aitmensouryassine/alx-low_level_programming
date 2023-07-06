@@ -2,8 +2,9 @@
 
 /**
  * hash_table_set - adds an element to the hash table
+ * @ht: the hash table
  * @key: the key
- * @value! the value
+ * @value: the value
  * Return: 0 on success, 1 otherwise
  */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
@@ -12,7 +13,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 
 	index = key_index((unsigned char *)key, ht->size);
 
-	return(insert_hash_node(&(ht->array[index]), key, value));
+	return (insert_hash_node(&(ht->array[index]), key, value));
 }
 
 /**
