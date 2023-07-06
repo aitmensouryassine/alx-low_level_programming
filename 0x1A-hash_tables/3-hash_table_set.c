@@ -70,6 +70,7 @@ hash_node_t *create_hash_node(const char *key, const char *value)
 
 	hash_node->key = malloc(sizeof(key));
 	hash_node->value = malloc(sizeof(value));
+	hash_node->next = NULL;
 
 	if (!hash_node->key || !hash_node->value)
 	{
