@@ -52,25 +52,27 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 		return (0);
 
 	add_node_to_sorted_list(ht, new_shash_node);
-	add_node_to_list(ht->array[index], new_shash_node);
+	add_node_to_list(ht, index, new_shash_node);
 
 	return (1);
 }
 
 /**
  * add_node_to_list - adds a node to the list
- * @list: the list
+ * @ht: the hash table
+ * @index: the index of the key/value pair
  * @new_shash_node: the new hash node
  */
-void add_node_to_list(shash_node_t *list, shash_node_t *new_shash_node)
+void add_node_to_list(shash_table_t *ht, unsigned long int index,
+		      shash_node_t *new_shash_node)
 {
 	shash_node_t *head;
 
-	head = list;
+	head = ht->array[index];
 
 	if (!head)
 	{
-		list = new_shash_node;
+		ht->array[index] = new_shash_node;
 		return;
 	}
 
@@ -90,8 +92,8 @@ void add_node_to_list(shash_node_t *list, shash_node_t *new_shash_node)
 		head = head->next;
 	}
 
-	new_shash_node->next = list;
-	list = new_shash_node;
+	new_shash_node->next = ht->array[index];
+	ht->array[index] = new_shash_node;
 }
 
 /**
