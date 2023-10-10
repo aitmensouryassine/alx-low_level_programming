@@ -51,6 +51,9 @@ int exponential_search(int *array, size_t size, int value)
 {
 	size_t i = 0, min;
 
+	if (!array)
+		return (-1);
+
 	if (array[i] == value)
 		return (i);
 
@@ -62,7 +65,7 @@ int exponential_search(int *array, size_t size, int value)
 		i *= 2;
 	}
 
-	if (i > size - 1)
+	if (i >= size - 1)
 		min = size - 1;
 	else
 		min = i;
