@@ -1,7 +1,13 @@
 #include "search_algos.h"
 #include <math.h>
 
-
+/**
+ * get_node_by_idx - gets a node by its index
+ * @list: The head of the linked list
+ * @size: size of the linked list
+ * @idx: the index of the node to get
+ * Return: Return the node, or NULL on failure
+ */
 listint_t *get_node_by_idx(listint_t *list, size_t size, size_t idx)
 {
 	size_t i;
@@ -53,7 +59,7 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 
 		if (i + jump >= size && do_jump)
 		{
-			printf("Value found between indexes [%ld] and [%ld]\n", i, i + jump);
+			printf("Value found between indexes [%ld] and [%ld]\n", i, i + jump - 1);
 			do_jump = 0;
 			i -= 1;
 		}
