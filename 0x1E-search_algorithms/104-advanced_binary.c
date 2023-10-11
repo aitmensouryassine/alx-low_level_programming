@@ -12,9 +12,10 @@
 int adv_binary_search_rec(int *array, int value, size_t start, size_t end)
 {
 	size_t i, middle;
-	int j;
 
 	/* Base */
+	if (start == end && array[start] == value)
+		return (start);
 	if (end < start)
 		return (-1);
 
@@ -31,17 +32,8 @@ int adv_binary_search_rec(int *array, int value, size_t start, size_t end)
 	/* binary search */
 	middle = (start + end) / 2;
 
-	if (array[middle] == value)
-	{
-		j = adv_binary_search_rec(array, value, start, middle - 1);
-		if (j == -1)
-			return (middle);
-		else
-			return (j);
-	}
-
-	if (value < array[middle])
-		return (adv_binary_search_rec(array, value, start, middle - 1));
+	if (value <= array[middle])
+		return (adv_binary_search_rec(array, value, start, middle));
 	else
 		return (adv_binary_search_rec(array, value, middle + 1, end));
 }
